@@ -1,0 +1,81 @@
+Monitoring users
+- All organisations have users who use the digital system, these may be internal or external users.
+- External users will include those that visit the organisations (org) website
+- Website traffic monitoring software will provide the org with data and information which can be used to make informed decisions to increase the 
+performance of the website or enhance design, including improving user experience and functionality.
+- This monitoring can take the form of:
+    - Checking how long a user spends on a website
+    - If the user is registered how long they are logged in for
+    - How many clicks the user takes to carry out the purpose of their visit
+Targeted marketing
+- Having data and information about their customers enables targeted marketing
+- Comes from a range of sources
+- Data may be analysed about specific products bought on a website by a customer, which can lead to targeted marketing about similar but different products.
+Strategic, tactical & operational decision making
+- Strategic is long term and complex and managed by sales managers/directors, for examle negotiating new contracts with suppliers
+- Tactical is medium term and managed by heads of departments, for example increasing or decreasing number of employees
+- Operational is short term, simple decision making managed by junior managers and supervisors
+6.3.2 The purpoise of business information tools and their use in business
+Business info tools
+- Software which aim to provide data
+- Used for making informed decision making
+- Main purpose is to
+    - Gather
+    - Organise
+    - Process
+    - Analyse
+- Data to show trends & patterns
+Business intelligence software (BIS)
+- Its purpose is to gather, analyse, process and report data to provide business intelligence
+- USually gathers data from a data warehouse
+- Data from BIS can be displayed on a dashboard
+- Used correctly a spreadsheet is a basic type of BIS
+- BIS enables managers to understand results of data analysis and make informed decisions
+Financial planning and analysis software
+- Its purpose is to support activities such as
+- Planning and setting budgets, budget forecasting and modelling
+- Enables creating a financial mode to test a range of financials cenarios, for example the impact of price rises and how it will affect the business
+- Enables creatinon and forecasting the financial aspects to make informed decisions at a strategical level
+- Advantages
+    - Models can be created and shared between employees
+    - Different values can be locked so they can't be changed, most likely related to fixed costs
+- Disadvantages
+    - While these can be benefical, it can be difficult to predict the impact of world events on business costs
+Task
+- Excel
+    - A spreadsheet editor that allows calculation, graphing tools, macro programming language called VBA
+Customer Relationship Management (CRM)
+- CRM's purpose is to make customer management less time consuming and easier for those that are customer facing
+- CRM software helps track, manage and record customer interactions
+- CRM's can gather data from a range of sources including
+    - The organisations website
+    - Social media
+    - Telephone and email
+    - Live chat interactions with customers
+- A CRM system can also utilise an API
+- CRM's can be used by an organisation to analyse gathered customer data from a range of sources
+- Data analysis techniques used on CRM data include
+- Data mining
+- The identification of trends and patterns
+
+- The results of that analysis can be presented visually, charts etc
+- These can be used to make informed decisons at strategic and tactical levels
+Data model
+- A data model will help when a database is being designed and will ensure the final database is fit for purpose and has no omissions
+- The final database will be efficient
+DBMS - Database management system
+Types of data model
+- Conceptual data model, defines what the system contains, to scope organise and define rules and to identify the data used.
+- Logical data model, defines how the system should be implemented regardless of the database management system. Used to develop the rules and data structures.
+- Physical data model describes how the system will be implemented using a specific DBMS, used to implement the Database
+- Hierarchical database model shows the database steructure on a hierarchical structure. used to show the relationships between the tables, records and fields
+- Relational data model shows a database as a collection of relationships. To show the relationships between the tables, records and fields using primary and foreign keys.
+ERD
+- ERD's can be used during the creation of conceptual, logical or physical data Models
+- Three main parts of an ERD
+- Entities - which will become the tables
+- Columns - which describe the tables and are also called attributes will become fields in the Database
+- Relationships - which are how the entities are linked
+- Relationships can be, one to one, one to many, or many to many to show cardinality
+- A completed ERD should not include any many to many
+- If a M:M relationship exists a link entity needs to be created

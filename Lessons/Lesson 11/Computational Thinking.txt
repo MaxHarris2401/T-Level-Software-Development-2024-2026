@@ -1,0 +1,30 @@
+A problem solving method using computer science techniques, where possibole solutions are developed and presented in a way that can be understood by humans and computers
+Decomposition
+- Breaking a complex problem into smaller sub-problems
+Abstraction
+- The process of removing or filtering characteristics that are not needed in order to focus on important characteristics
+Top Down
+- All about ising Decomposition to break that problem down
+- Where the top nmost node is most abstracted and sub nodes become less abstracted as they are decomposed.
+Bottom up
+- Opposite of top down, focuses on solving the smallest part, e.g a module, of a problem
+- These are then combined to move up a level, until you reach the end, this is called integration.
+Activity
+Outline the correct procedure for:
+- Making Dinner - bottom up
+- Driving a car - bottom up
+Decomposition 4 steps:
+1. Indentify and describe the problems and processes using sector specific technical terms
+2. Break down the problem until it cannot be any smaller, likely using top down design. Only take tasks relevant to solving the problem
+3. describe the taslks and subtasks and create documentation that should be clear and consise to enable 3rd parties to implement the solution
+4. Communicate across a team so each person can take a decomposed problem and develop it as a module
+Modularisation
+- Breaking down problems into different components or modules which are independent and can be seperated
+- often used in object orientated programming languages
+- also a technique you can use with just subroutines
+Pattern Recognition
+- Identifying patterns to help solve complex problems
+- Is one of the pillars of computational thinking
+- For example code breaking during ww2 to understand ciphered messages.
+- E.g. facial recognitio nsoftware - to identify a persons identity using their face in a photo, video or realtim
+- Can be used to identify common elements or differences in problems or systems, to describe patterns that have been identified, and making predictions based on patterns.

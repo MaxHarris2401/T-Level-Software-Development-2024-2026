@@ -1,0 +1,42 @@
+Data Warehousing
+- Is a central collection of key data, integrated into a pre-defined format
+- Allow data to be used for business-critica evidence-based decisions
+- Data used to fill the data warehouse will likely be from a range of sources, external & internal
+- Meaning it will be in a variety of formats and will need to be subjected to data cleaning. This process will involve converting data.
+- Once we put data into a data warehouse it cannot change or be edited
+- Data can be added, as sources are updated
+- Decisions need to be made on what data is included or excluded form the DW
+- Data is only put into the DW if a use has already been identified
+    - A DW can be used to process and analyse data on previous data, rather than currently in use data
+    - DW's are used by specific businesses users to analyse and extract particular meaning from the data that was defined when the DW is setup
+    - Analysis of data in a DW usually focuses on changes in data in a given time period, for example analysing sales in the previous year
+    - Data in a DW must be secure, reliable, easy to retrieve and easy to manage - for Analysis
+    - A DW could be physical devices or in a secure cloud
+Data cleaning
+- The process of going through data and looking for errors, correcting them or excluding data where errors have been located
+Data Lakes
+- DLs are data stores that hold data in an unstructured way.
+- UNLIKE a DW, there si no defined format to the way data is structured; data is stored in a raw state as it may not be processed
+- This data is only ever converted to a predefined format when it is ready to be used and analysed.
+- It is possible some data in a DL will never be used
+- That can be due to it containing all data over time in a raw state
+- One benefit is that because there is so much data held there, the range of analysis and processing that can be done is large
+Data mining 
+- Data mining is used by org's to process and analyse raw data
+- Software is used to look for trends and patterns in big data sources such as data warehouses or lakes
+Data reporting
+- Takes data and converts it to information
+- It can show what an org is happening now, rather than analysis which only shows why something is happening
+Metadata
+- Data about data
+- Metatdata can be clasified in 3 main ways
+- Administrative
+    - Provides Administrative instructions about a file
+    - Including details on any restrictions to be placed on the file
+- Descriptive
+    - Relate to how data could be identified
+    - Including titles, dates or keywords
+- Structural
+    - Describes how the digital asset is arranged or structured
+    - For example a data dictionary
+- Basically all files or interactins with a digital system will either include or generate metadata

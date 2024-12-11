@@ -1,0 +1,39 @@
+Data assurance
+- Data that is gathered, processed and analysed must have a high level of reliability and quality
+- Unreliable or low-quality data is bad data
+- The reliability of data refers to how accurate and complete it is
+- To increase quality of data, verification and validation techniques can be used.
+Data redundancy
+- Is when you've stored the same piece of data two or more times on a digital system
+- Can be linked with data inconsistency
+- Including when it is stored in multiple different formats or data types
+- Or storing data acreoss multiple locations, an issue when only one location gets updated
+- Could lead to results of processing and analysis providing unreliable or meaningless information
+- Which can lead to incorrect decisions being made at strategic and tactical levels
+- If done properly data redundancy can be a back-up copy of your data
+Qualitative and quantitative
+- Data gathered using survey and questionaires
+- These may follow as feedback from an interaction witha customer
+Research population
+- Research population is the number of people required to complete the search
+- Organisations will select a research population it will use to gather the required data and information
+- How many people selected will depend on the defined requirements needed from the results of the research.
+- Whenh selecting a research pop, its important to consider the demographhics selected as they must related to the pre-defined requirement
+- If your research population is skewed in for example age or gender, the results of the research might not be relightable or high-quality data
+Legislation and regulatory requirements
+- When data is being gathered it must comply with up-to-date legislation and any relevant regulations
+- Including the data protection act need to be considered
+- This should all be done with acountability and fairness inline with these legislations
+Organisational factors
+- Three main factors:
+- Time
+- Skills 
+- Cost
+- Gathering data takes time, both with internal and external sources, including from a data warehouse or lakes. There will be financial impact in terms of how long it takes
+to get the data.
+- Data entry takes skill, time & money
+- Data must be maintained, checking the data is kept up to date, if the data relates to personal data it is a legal requirement to be kept up to date, it could have also became
+redundannt over time. This takes skill time and money.
+- As the amount of data increases, so does your storage needs. Be that onsite or cloud, this increases costs, either as a one-off opayment or ongoing contractual payments,
+this will also require staff to be trained to handle data.
+- These tasks could all be done by a 3rd party, but that would increase financial costs and could cause significant impact if the requirements aren't clearly defined
