@@ -16,6 +16,7 @@ def main():
             input_ship()
             display_board()
             player_turn()
+            if 
             break
         elif key_press_menu == "2":
             print("To play, select a type of generation to use as the enemy board, between 1-3 or P for procedural generation\n \
@@ -36,7 +37,12 @@ def main():
                     break
                 else:
                     print("Invalid option entered, please try again")
-            
+def game():
+    setup_board()
+    input_ship()
+    display_board()
+    player_turn() 
+
 def setup_board():
     global board
     global empty_board
@@ -71,7 +77,7 @@ def setup_board():
     while True:
         game_mode = input("Type AI for AI player or M for multiplayer: ")
         if game_mode.upper() == "AI":
-            #AI gamemomed
+            AI = True
             break
         elif game_mode.upper() == "M":
             #multiplayer
@@ -186,9 +192,12 @@ def player_turn():
             print("Game over as number of turns has exceeded 20")
             exit()
 
-        if has_won():
+        elif has_won():
             print("Game over as player won")
             exit()
+        
+def ai_turn():
+    print("melt")
 
 def has_won():
     global hits
@@ -301,6 +310,5 @@ def input_ship():
                     else:  # vertical
                         human_board[row_pos + i][col_pos] = ship_letter
             break  # exit the loop after placing the ship
-
 
 main()
