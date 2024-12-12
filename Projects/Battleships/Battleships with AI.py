@@ -15,8 +15,11 @@ turns = 0
 hits_2 = 0 
 turns_2 = 0
 
+player_turns = 1 
+
 
 def main():
+    global is_ai
     print("----------Battleships-----------\n1. New Game\n2. Help Screen\n3. Quit")
     while True:
         key_press_menu = input(">>> ")
@@ -57,41 +60,44 @@ def setup_board():
         empty_board.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]) 
         p1_board.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"])
         # empty board to be displayed so the user has to play the game properly
-    while True:
-        level = input("Enter a level (1-3) or type P for procedural generation: ")
-        if level == "1" or level == "2" or level == "3":
-            print("Level",level)
-            break
-        elif level.upper() == "P":
-            print("Procedural Generation")
-            for i in range(4): # different letter each time the for loop cycles
-                letter_val = (i % 4) + 1  
-                if letter_val == 1:
-                    letter = "A"
-                    length = 5
-                elif letter_val == 2:
-                    letter = "B"
-                    length = 4
-                elif letter_val == 3:
-                    letter = "C"
-                    length = 3
-                elif letter_val == 4:
-                    letter = "S"
-                    length = 3
-                place_ship(length, letter)
-            break
-        else:
-            print("Invalid option entered, please try again")
+   
     while True:
         game_mode = input("Type AI for AI player or M for multiplayer: ")
         if game_mode.upper() == "AI":
             is_ai = True
+            while True:
+                level = input("Enter a level (1-3) or type P for procedural generation: ")
+                if level == "1" or level == "2" or level == "3":
+                    print("Level",level)
+                    break
+                elif level.upper() == "P":
+                    print("Procedural Generation")
+                    for i in range(4): # different letter each time the for loop cycles
+                        letter_val = (i % 4) + 1  
+                        if letter_val == 1:
+                            letter = "A"
+                            length = 5
+                        elif letter_val == 2:
+                            letter = "B"
+                            length = 4
+                        elif letter_val == 3:
+                            letter = "C"
+                            length = 3
+                        elif letter_val == 4:
+                            letter = "S"
+                            length = 3
+                        place_ship(length, letter)
+                    break
+                else:
+                    print("Invalid option entered, please try again")
+
             break
         elif game_mode.upper() == "M":
             is_ai = False
             break
         else:
             print("Invalid data entered, try again")
+    
 # levels system
 
     if level == "1":
@@ -152,10 +158,10 @@ def player_turn():
     global hits_2 # player 2/ai
     global turns_2
 
-    player_turn = 1 
+    global player_turns
 
     while game_over != True:
-        if player_turn == 1:
+        if player_turns == 1:
             print("Player 1's Turn")
         else:
             print("Player 2's Turn")
@@ -180,7 +186,7 @@ def player_turn():
             except:
                 print("Invalid data type entered, please try again")
                 
-        if player_turn == 1: # player 1
+        if player_turns == 1: # player 1
             if board[int_col][int_row] == "A" or board[int_col][int_row] == "B" or \
             board[int_col][int_row] == "C" or board[int_col][int_row] == "S":
                 register = "\033[32mHit!\033[0m"
@@ -215,7 +221,7 @@ def player_turn():
         display_board()
         print(register)
         
-        if player_turn == 1:
+        if player_turns == 1:
             if turns - 20 > 1:
                 print("You have",str(20 - turns),"hit remaining")
             else:
@@ -231,16 +237,16 @@ def player_turn():
             exit()
 
         if has_won():
-            print("Game over as player won")
+            print("Game over as player",str(player_turns),"won")
             exit()
 
         if is_ai:
             ai_turn()
         else:
-            if player_turn == 1:
-                player_turn = 2
+            if player_turns == 1:
+                player_turns = 2
             else:
-                player_turn = 1
+                player_turns = 1
 
 def has_won():
     global hits
@@ -318,70 +324,87 @@ def place_ship(ship_length, ship_letter):
             break  # exit the loop after placing the ship
 
 def input_ship():
-    for i in range(4): # different letter each time the for loop cycles
-        display_board()
-        letter_val = (i % 4) + 1  
-        # ship type cycle
-        if letter_val == 1:
-            ship_letter = "A"
-            ship = "Aircraft Carrier"
-            ship_length = 5
-        elif letter_val == 2:
-            ship_letter = "B"
-            ship = "Battleship"
-            ship_length = 4
-        elif letter_val == 3:
-            ship_letter = "C"
-            ship = "Cruiser"
-            ship_length = 3
-        elif letter_val == 4:
-            ship_letter = "S"
-            ship = "Submarine"
-            ship_length = 3
-    
-        while True: # checks the length of ship isn't bigger than the index
-            while True:
-                print("Please enter co-ordinates for your",ship,"which is of the length:",str(ship_length))
-                col_pos = input("Enter a column position (0-9): ")
-                row_pos = input("Enter a row position (0-9): ")
-                axis_pos = input("Enter an axis position (0 for horizontal and 1 for vertical): ")
-                try:
-                    col_pos = int(col_pos)
-                    row_pos = int(row_pos)
-                    axis_pos = int(axis_pos)
-                    
-                    break
-                except:
-                    print("One or more invalid data entered, please try again")
-            
-            if axis_pos == 0:
-                if col_pos + ship_length > 10:
-                    continue
-                else:
-                    print("One or more invalid data entered, please try again")
-            else:
-                if row_pos + ship_length > 10:
-                    continue
-                else:
-                    print("One or more invalid data entered, please try again")
-                
-            can_place = True
-            for i in range(ship_length):
-                if axis_pos == 0:  # horizontal
-                    if p1_board[row_pos][col_pos + i] != "-":
-                        can_place = False
-                        break
-                else:  # vertical
-                    if p1_board[row_pos + i][col_pos] != "-":
-                        can_place = False
-                        break
+    global player_turns
+    global is_ai
 
-            if can_place:
+    for player in (1, 2):
+        if is_ai and player == 2:
+            break  # skip player 2 if AI is enabled
+        if player == 1:
+            board_to_use = p1_board
+        else:
+            board_to_use = board
+
+        for i in range(4):  # different letter each time the for loop cycles
+
+            display_board()
+
+            letter_val = (i % 4) + 1
+            # ship type cycle
+            if letter_val == 1:
+                ship_letter = "A"
+                ship = "Aircraft Carrier"
+                ship_length = 5
+            elif letter_val == 2:
+                ship_letter = "B"
+                ship = "Battleship"
+                ship_length = 4
+            elif letter_val == 3:
+                ship_letter = "C"
+                ship = "Cruiser"
+                ship_length = 3
+            elif letter_val == 4:
+                ship_letter = "S"
+                ship = "Submarine"
+                ship_length = 3
+
+            while True:  # checks the length of ship isn't bigger than the index
+                while True:
+                    print("Player", player, "- Please enter co-ordinates for your", ship, "which is of the length:", str(ship_length) + "\n")
+                    row_pos = input("Enter a row position (0-9): ")
+                    col_pos = input("Enter a column position (0-9): ")
+                    axis_pos = input("Enter an axis position (0 for horizontal and 1 for vertical): ")
+                    try:
+                        col_pos = int(col_pos)
+                        row_pos = int(row_pos)
+                        axis_pos = int(axis_pos)
+                        if axis_pos < 0 or axis_pos > 1:
+                            print("\nInvalid position entered, please try again")
+                            continue
+                        break
+                    except:
+                        print("\nInvalid data entered, please try again")
+
+                if axis_pos == 0:
+                    if col_pos + ship_length > 10:
+                        print("\nPosition is too big for the grid, please try again")
+                        continue
+                else:
+                    if row_pos + ship_length > 10:
+                        print("\nPosition is too big for the grid, please try again")
+                        continue
+
+                can_place = True
                 for i in range(ship_length):
                     if axis_pos == 0:  # horizontal
-                        p1_board[row_pos][col_pos + i] = ship_letter
+                        if board_to_use[row_pos][col_pos + i] != "-":
+                            can_place = False
+                            break
                     else:  # vertical
-                        p1_board[row_pos + i][col_pos] = ship_letter
-            break  # exit the loop after placing the ship
+                        if board_to_use[row_pos + i][col_pos] != "-":
+                            can_place = False
+                            break
+
+                if not can_place:
+                    print("\nThis ship cannot be placed, please try again")
+                    continue
+                else:
+                    for i in range(ship_length):
+                        if axis_pos == 0:  # horizontal
+                            board_to_use[row_pos][col_pos + i] = ship_letter
+                        else:  # vertical
+                            board_to_use[row_pos + i][col_pos] = ship_letter
+
+                break  # exit the loop after placing the ships
 
 main()
