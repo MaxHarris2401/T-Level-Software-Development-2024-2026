@@ -1,14 +1,20 @@
 import random as rng
 
+is_ai = False
+
 board = [] # initialise board array
 empty_board = [] # initialise empty board that will only change when a hit sinks a ship or misses
 p1_board = [] # initialise board for the player
 level = 1
+
+# player 1
 hits = 0
 turns = 0
-hits_2 = 0 # player 2/ai
+
+# player 2/ai
+hits_2 = 0 
 turns_2 = 0
-is_ai = False
+
 
 def main():
     print("----------Battleships-----------\n1. New Game\n2. Help Screen\n3. Quit")
