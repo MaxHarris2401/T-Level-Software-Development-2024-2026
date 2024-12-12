@@ -3,7 +3,8 @@ import random as rng
 is_ai = False
 
 board = [] # initialise board array
-empty_board = [] # initialise empty board that will only change when a hit sinks a ship or misses
+empty_board_1 = [] # initialise empty board that will only change when a hit sinks a ship or misses
+empty_board_2 = []
 p1_board = [] # initialise board for the player
 level = 1
 
@@ -51,13 +52,15 @@ def main():
             
 def setup_board():
     global board
-    global empty_board
+    global empty_board_1
+    global empty_board_2
     global p1_board
     global level
     global is_ai
     for i in range(10):
         board.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"])
-        empty_board.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]) 
+        empty_board_1.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]) 
+        empty_board_2.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]) 
         p1_board.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"])
         # empty board to be displayed so the user has to play the game properly
    
@@ -192,7 +195,7 @@ def player_turn():
                 register = "\033[32mHit!\033[0m"
                 board[int_col][int_row] = "\033[32m*\033[0m" # red text
                 # changed so you can't hit the same ship twice
-                empty_board[int_col][int_row] = "\033[32m*\033[0m" 
+                empty_board_2[int_col][int_row] = "\033[32m*\033[0m" 
                 # changed so you can see you've hit that ship
                 hits+=1
                 turns+=1
@@ -200,7 +203,7 @@ def player_turn():
                 register = "\033[31mMiss!\033[0m"
                 board[int_col][int_row] = "\033[31m.\033[0m" # green text
                 # changed so you can't miss the same ship twice
-                empty_board[int_col][int_row] = "\033[31m.\033[0m" 
+                empty_board_2[int_col][int_row] = "\033[31m.\033[0m" 
                 # changed so you can see you've missed that ship
                 turns+=1
         else: # player 2
@@ -208,13 +211,13 @@ def player_turn():
             p1_board[int_col][int_row] == "C" or p1_board[int_col][int_row] == "S":
                 register = "\033[32mHit!\033[0m"
                 p1_board[int_col][int_row] = "\033[32m*\033[0m" # red text
-                empty_board[int_col][int_row] = "\033[32m*\033[0m" 
+                empty_board_1[int_col][int_row] = "\033[32m*\033[0m" 
                 hits_2+=1
                 turns_2+=1
             elif p1_board[int_col][int_row] == "-":
                 register = "\033[31mMiss!\033[0m"
                 p1_board[int_col][int_row] = "\033[31m.\033[0m" # green text
-                empty_board[int_col][int_row] = "\033[31m.\033[0m" 
+                empty_board_1[int_col][int_row] = "\033[31m.\033[0m" 
                 
                 turns_2+=1
 
@@ -269,27 +272,51 @@ def game_over():
 def ai_turn():
     global turns_2
     global hits_2
-    
-    continue_game = input("\nAI's turn, Press enter to continue:")
-    
+
+    input("\nAI's turn, press enter to continue:")
+
+    hit_found = False
+    direction = None  # direction of the attack after a hit (None, "horizontal", "vertical")
+    last_hit = None 
+
     while True:
-        int_col = rng.randint(0, 9)
-        int_row = rng.randint(0, 9)
-        
-        if empty_board[int_col][int_row] == "-":
-            if p1_board[int_row][int_col] == "A" or p1_board[int_row][int_col] == "B" or \
-               p1_board[int_row][int_col] == "C" or p1_board[int_row][int_col] == "S":
-                print("AI attacks at ("+str(int_row)+",", str(int_col)+") - Hit!")
-                p1_board[int_row][int_col] = "\033[32m*\033[0m"  # mark as hit
+        if not hit_found:
+            hit_row = rng.randint(0, 9)
+            hit_col = rng.randint(0, 9)
+        else:
+            if direction == "horizontal":
+                hit_col += 1  # attacking to the right
+            elif direction == "vertical":
+                hit_row += 1  # attacking downwards
+            if hit_row > 9 or hit_col > 9:
+                hit_found = False  # redo
+
+        if empty_board_1[hit_row][hit_col] == "-":
+            if p1_board[hit_row][hit_col] in ['A', 'B', 'C', 'S']:  # Ship hit
+                print("AI attacks at ("+str(hit_row)+",", str(hit_col)+") - Hit!")
+                p1_board[hit_row][hit_col] = "\033[32m*\033[0m"
+                empty_board_1[hit_row][hit_col] = "\033[32m*\033[0m"
                 hits_2 += 1
-                turns_2 += 1
-            else:
-                print("AI attacks at ("+str(int_row)+",", str(int_col)+") - Miss!")
-                p1_board[int_row][int_col] = "\033[31m.\033[0m"  # mark as miss
+                hit_found = True
+                last_hit = (hit_row, hit_col)
+
+                if hit_col + 1 < 10 and p1_board[hit_row][hit_col + 1] == p1_board[hit_row][hit_col]:
+                    direction = "horizontal"  # check to the right
+                elif hit_row + 1 < 10 and p1_board[hit_row + 1][hit_col] == p1_board[hit_row][hit_col]:
+                    direction = "vertical"  # check downwards
 
                 turns_2 += 1
-            display_board()
-            break  
+                display_board()
+                break
+            else: 
+                print("AI attacks at ("+str(hit_row)+",", str(hit_col)+") - Miss!")
+                p1_board[hit_row][hit_col] = "\033[31m.\033[0m"
+                empty_board_1[hit_row][hit_col] = "\033[31m.\033[0m"
+                turns_2 += 1
+                display_board()
+                break
+        else:
+            hit_found = False
 
 def place_ship(ship_length, ship_letter):
     while True: # checks the length of ship isn't bigger than the index
