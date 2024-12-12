@@ -2,9 +2,10 @@ import random as rng
 
 is_ai = False
 
-board = [] # initialise board array
+
 empty_board_1 = [] # initialise empty board that will only change when a hit sinks a ship or misses
 empty_board_2 = []
+p2_board = [] # initialise board array
 p1_board = [] # initialise board for the player
 level = 1
 
@@ -51,18 +52,18 @@ def main():
                     print("Invalid option entered, please try again")
             
 def setup_board():
-    global board
     global empty_board_1
     global empty_board_2
     global p1_board
+    global p2_board
     global level
     global is_ai
     for i in range(10):
-        board.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"])
         empty_board_1.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]) 
-        empty_board_2.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"]) 
+        empty_board_2.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"])
+        # empty boards to be displayed so the user has to play the game properly 
         p1_board.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"])
-        # empty board to be displayed so the user has to play the game properly
+        p2_board.append(["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"])
    
     while True:
         game_mode = input("Type AI for AI player or M for multiplayer: ")
@@ -144,12 +145,12 @@ def setup_board():
     
 def display_board():
     print("  0   1   2   3   4   5   6   7   8   9")
-    for number, row in enumerate(board): 
+    for number, row in enumerate(empty_board_2): 
         # gets the number of each array and assigns it to the variable number
         print(number, " | ".join(row))
         print("   -+---+---+---+---+---+---+---+---+-")
     print(" --------------------------------------\n  0   1   2   3   4   5   6   7   8   9")
-    for number, row in enumerate(p1_board): 
+    for number, row in enumerate(empty_board_1): 
         # gets the number of each array and assigns it to the variable number
         print(number, " | ".join(row))
         print("   -+---+---+---+---+---+---+---+---+-")
@@ -190,18 +191,18 @@ def player_turn():
                 print("Invalid data type entered, please try again")
                 
         if player_turns == 1: # player 1
-            if board[int_col][int_row] == "A" or board[int_col][int_row] == "B" or \
-            board[int_col][int_row] == "C" or board[int_col][int_row] == "S":
+            if p2_board[int_col][int_row] == "A" or p2_board[int_col][int_row] == "B" or \
+            p2_board[int_col][int_row] == "C" or p2_board[int_col][int_row] == "S":
                 register = "\033[32mHit!\033[0m"
-                board[int_col][int_row] = "\033[32m*\033[0m" # red text
+                p2_board[int_col][int_row] = "\033[32m*\033[0m" # red text
                 # changed so you can't hit the same ship twice
                 empty_board_2[int_col][int_row] = "\033[32m*\033[0m" 
                 # changed so you can see you've hit that ship
                 hits+=1
                 turns+=1
-            elif board[int_col][int_row] == "-":
+            elif p2_board[int_col][int_row] == "-":
                 register = "\033[31mMiss!\033[0m"
-                board[int_col][int_row] = "\033[31m.\033[0m" # green text
+                p2_board[int_col][int_row] = "\033[31m.\033[0m" # green text
                 # changed so you can't miss the same ship twice
                 empty_board_2[int_col][int_row] = "\033[31m.\033[0m" 
                 # changed so you can see you've missed that ship
@@ -360,7 +361,7 @@ def input_ship():
         if player == 1:
             board_to_use = p1_board
         else:
-            board_to_use = board
+            board_to_use = p2_board
 
         for i in range(4):  # different letter each time the for loop cycles
 
