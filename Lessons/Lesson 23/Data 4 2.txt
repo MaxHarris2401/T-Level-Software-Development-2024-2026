@@ -1,0 +1,30 @@
+Data access
+- We all know that data is the most valuable asset of a business
+- We don't want everyone to be able to access this, the janitor doesnt need access after all
+- Permissions can be set to limit who can access
+- Rules can also be set, which can be part of permissions to attempt to increase data security
+- These rules could be things like access to all files and access to specific files and folders
+- Likely to be based on job role in org's
+Unauthorised data access
+- The impacts of the loss or unauthorised editing of data can include
+- Data bias
+- Inaccurate data leading to incorrect processing analysis and uninformed decisions being made
+- A data breach/leak leading to possible legal or financial impact
+Role & use of APIs in managing data access
+- Application Programming Interface (API)
+- Enables users to manage access and use data across a range of platforms
+- API advantage - user's dont need to create accounts for multiple websites
+- APIs
+    - Allow applications to access data and interact with other applications or systems by sending and recieving requests
+    - To send and recieve requests API's use JSON (usually)
+    - API sends a user request to a digitals system, the digital system will send a response back to the user
+    - APIs ensure authorised users can access and manage data, but must be maintained to ensure security
+    - Meaning the certification should be set to the level appropriate to the data
+    - PI certification should be set to partner or private NOT public certification
+    - Advantages
+        - API enables authorised users to access data even when the business makes changes to the backend system for example the DBMS
+        - As long as the basic structure and function doesn't change the API will remain functional
+        - APIs most commonly used by the financial services sector, Customer Relations Management systems and online retailers
+Data at rest: data that has reached a destination and is not being accessed or used
+Data in motion: When data is moving from one location to another, more susceptible to security attacks
+Data in use: data that's actively being used and/or processed by a user or digital system
